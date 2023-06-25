@@ -1,7 +1,17 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.lang.Math.abs;
 
 public class Decryption extends Alphabet {
-    public String decrypt(String str,int key){
+
+    private  String inputUrl;
+    private String outputUrl;
+    public Decryption(String inputUrl, String outputUrl){
+        this.inputUrl = inputUrl;
+        this.outputUrl = outputUrl;
+    }
+    private String decrypt(String str,int key){
         String res;
         int index;
         int newIndex;
@@ -22,5 +32,15 @@ public class Decryption extends Alphabet {
         }
         res = String.valueOf(resArray);
         return res;
+    }
+
+    public void decryptFile(){
+        WorkingWithFiles workingWithFiles = new WorkingWithFiles();
+        List<String> list = workingWithFiles.readingFromFile(outputUrl);
+        List<String> resList = new ArrayList<>();
+        for (String str:list) {
+            resList.add(decrypt(str,2));
+        }
+        workingWithFiles.WritingToFile(resList,inputUrl);
     }
 }

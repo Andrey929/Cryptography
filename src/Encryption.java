@@ -1,7 +1,16 @@
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.lang.Math.abs;
 
 public class Encryption extends Alphabet {
-    public String encrypt(String str,int key){
+    private  String inputUrl;
+    private String outputUrl;
+    public Encryption(String inputUrl, String outputUrl){
+        this.inputUrl = inputUrl;
+        this.outputUrl = outputUrl;
+    }
+    private String encrypt(String str,int key){
         String res;
         int index;
         int newIndex;
@@ -22,6 +31,15 @@ public class Encryption extends Alphabet {
         }
         res = String.valueOf(resArray);
         return res;
+    }
+    public void encryptFile(){
+        WorkingWithFiles workingWithFiles = new WorkingWithFiles();
+        List<String> list = workingWithFiles.readingFromFile(inputUrl);
+        List<String> resList = new ArrayList<>();
+        for (String str:list) {
+            resList.add(encrypt(str,2));
+        }
+        workingWithFiles.WritingToFile(resList,outputUrl);
     }
 
 }
