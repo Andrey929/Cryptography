@@ -32,14 +32,15 @@ public class Encryption extends Alphabet {
         res = String.valueOf(resArray);
         return res;
     }
-    public void encryptFile(){
+    public void encryptFile() {
         WorkingWithFiles workingWithFiles = new WorkingWithFiles();
-        List<String> list = workingWithFiles.readingFromFile(inputUrl);
-        List<String> resList = new ArrayList<>();
-        for (String str:list) {
-            resList.add(encrypt(str,2));
+        if (workingWithFiles.readingFromFile(outputUrl) != null) {
+            List<String> list = workingWithFiles.readingFromFile(inputUrl);
+            List<String> resList = new ArrayList<>();
+            for (String str : list) {
+                resList.add(encrypt(str, 2));
+            }
+            workingWithFiles.WritingToFile(resList, outputUrl);
         }
-        workingWithFiles.WritingToFile(resList,outputUrl);
     }
-
 }

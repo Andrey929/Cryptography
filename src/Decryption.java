@@ -11,7 +11,9 @@ public class Decryption extends Alphabet {
         this.inputUrl = inputUrl;
         this.outputUrl = outputUrl;
     }
-    private String decrypt(String str,int key){
+    public Decryption(){};
+
+    protected String decrypt(String str,int key){
         String res;
         int index;
         int newIndex;
@@ -36,11 +38,14 @@ public class Decryption extends Alphabet {
 
     public void decryptFile(){
         WorkingWithFiles workingWithFiles = new WorkingWithFiles();
-        List<String> list = workingWithFiles.readingFromFile(outputUrl);
-        List<String> resList = new ArrayList<>();
-        for (String str:list) {
-            resList.add(decrypt(str,2));
+        if (workingWithFiles.readingFromFile(outputUrl) != null) {
+            List<String> list = workingWithFiles.readingFromFile(outputUrl);
+            List<String> resList = new ArrayList<>();
+            for (String str:list) {
+                resList.add(decrypt(str,2));
+            }
+            workingWithFiles.WritingToFile(resList,inputUrl);
         }
-        workingWithFiles.WritingToFile(resList,inputUrl);
+
     }
 }
