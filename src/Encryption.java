@@ -34,7 +34,7 @@ public class Encryption extends Alphabet {
     }
     public void encryptFile() {
         WorkingWithFiles workingWithFiles = new WorkingWithFiles();
-        if (workingWithFiles.readingFromFile(outputUrl) != null) {
+        if (workingWithFiles.readingFromFile(inputUrl) != null) {
             List<String> list = workingWithFiles.readingFromFile(inputUrl);
             List<String> resList = new ArrayList<>();
             for (String str : list) {
